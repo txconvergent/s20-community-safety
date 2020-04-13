@@ -22,3 +22,16 @@ class CrimeData():
     self.bottom = region[1][0]
     self.left = region[0][1]
     self.right = region[1][1]
+    
+  def load(self, dataset_id, domain, socrata_token, start_date, max_crimes):
+    client = Socrata(domain, socrata_token)
+    query = "incident_report_number > " + str(dataset_id) + \
+            " and latitude > " + str(bottom) + \
+            " and latitude < " + str(top) + \
+            " and longitude > " + str(left) + \
+            " and longitude < " + str(right)
+    dataset = client.get(dataset_id, where = query, limit = max_crimes)
+    df = pd.DataFrame.from_dict(dataset)
+    
+  
+            
