@@ -29,7 +29,7 @@ class CrimeData():
   
   def crime_count(self):
     try:
-      return self.df[incident_report_number].count()
+      return self.df['incident_report_number'].count()
     except:
       print('No dataset has been loaded into this instance')
   
