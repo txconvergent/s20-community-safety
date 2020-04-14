@@ -4,6 +4,6 @@ dataset_id = 'fdj4-gpfu'
 domain = 'data.austintexas.gov'
 
 # UT austin region: latitude and longitude
-top_left = (30.287402, -97.754840)
-bottom_right = (30.282200, -97.748456)
+top_left = (30.299402, -97.754840)
+bottom_right = (30.282200, -97.728456)
 UTregion = [top_left, bottom_right]
