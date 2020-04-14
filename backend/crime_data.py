@@ -18,10 +18,10 @@ class CrimeData():
     incident_id = start_year * (10**7)
     query = "incident_report_number > " + str(incident_id) + \
             " and incident_report_number < 20210000000 " + \
-            " and latitude > " + str(bottom) + \
-            " and latitude < " + str(top) + \
-            " and longitude > " + str(left) + \
-            " and longitude < " + str(right)
+            " and latitude > " + str(self.bottom) + \
+            " and latitude < " + str(self.top) + \
+            " and longitude > " + str(self.left) + \
+            " and longitude < " + str(self.right)
     dataset = client.get(dataset_id, where = query, limit = max_crimes)
     df = pd.DataFrame.from_dict(dataset)
   
@@ -32,8 +32,8 @@ class CrimeData():
       print('No dataset has been loaded into this instance')
   
   def markermap(self):
-    center_lat = bottom + (top - bottom) / 2
-    center_lng = right + (left - right) / 2
+    center_lat = self.bottom + (self.top - self.bottom) / 2
+    center_lng = self.right + (self.left - self.right) / 2
     gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, 17)
     try:
       lat_coordinates = df['latitude'].astype('float').tolist()
@@ -44,8 +44,8 @@ class CrimeData():
       print('No dataset has been loaded into this instance')
     
   def heatmap(self):
-    center_lat = bottom + (top - bottom) / 2
-    center_lng = right + (left - right) / 2
+    center_lat = self.bottom + (self.top - self.bottom) / 2
+    center_lng = self.right + (self.left - self.right) / 2
     gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, 17)
     try:
       lat_coordinates = df['latitude'].astype('float').tolist()
