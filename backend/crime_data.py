@@ -59,6 +59,3 @@ class CrimeData():
   
   def close(self):
     self.client.close()
-  
-  def show_bottom(self):
-    print(self.bottom)
