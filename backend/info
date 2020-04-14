@@ -1,0 +1,9 @@
+sodapy_token = 'xty4xwyMTY7JsNGnat7Av9sQt'
+
+dataset_id = 'fdj4-gpfu'
+domain = 'data.austintexas.gov'
+
+# UT austin region: latitude and longitude
+top_left = (30.287402, -97.754840)
+bottom_right = (30.282200, -97.748456)
+UTregion = [top_left, bottom_right]
