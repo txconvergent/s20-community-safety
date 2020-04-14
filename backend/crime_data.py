@@ -33,10 +33,10 @@ class CrimeData():
     except:
       print('No dataset has been loaded into this instance')
   
-  def markermap(self):
+  def markermap(self, zoom=14):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
-    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, 17)
+    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom)
     try:
       lat_coordinates = self.df['latitude'].astype('float').tolist()
       lng_coordinates = self.df['longitude'].astype('float').tolist()
@@ -45,10 +45,10 @@ class CrimeData():
     except:
       print('No dataset has been loaded into this instance')
     
-  def heatmap(self):
+  def heatmap(self, zoom=14):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
-    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, 17)
+    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom)
     try:
       lat_coordinates = self.df['latitude'].astype('float').tolist()
       lng_coordinates = self.df['longitude'].astype('float').tolist()
