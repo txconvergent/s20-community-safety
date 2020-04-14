@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 from sodapy import Socrata
+from gmplot import gmplot
 
 dataset_id = 'fdj4-gpfu'
 domain = 'data.austintexas.gov'
@@ -32,6 +33,24 @@ class CrimeData():
             " and longitude < " + str(right)
     dataset = client.get(dataset_id, where = query, limit = max_crimes)
     df = pd.DataFrame.from_dict(dataset)
+  
+  def crime_count(self):
+    try:
+      return df[incident_report_number].count()
+    except:
+      print('No dataset has been loaded into this instance')
+  
+  def markermap(self):
+    center_lat = bottom + (top - bottom) / 2
+    center_lng = right + (left - right) / 2
+    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, 17)
+    try:
+      lat_coordinates = df['latitude'].astype('float').tolist()
+      lng_coordinates = df['longitude'].astype('float').tolist()
+      gmap.scatter(lat_coordinates, lng_coordinates, '#FF0000', size=5, marker=False)
+      return gmap
+    except:
+      print('No dataset has been loaded into this instance')
     
   
             
