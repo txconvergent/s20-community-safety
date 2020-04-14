@@ -13,9 +13,11 @@ class CrimeData():
     self.left = region[0][1]
     self.right = region[1][1]
     
-  def load(self, dataset_id, domain, socrata_token, start_date, max_crimes):
+  def load(self, dataset_id, domain, socrata_token, start_year, max_crimes):
     client = Socrata(domain, socrata_token)
-    query = "incident_report_number > " + str(dataset_id) + \
+    incident_id = start_year * (10**7)
+    query = "incident_report_number > " + str(incident_id) + \
+            " and incident_report_number < 20210000000 " + \
             " and latitude > " + str(bottom) + \
             " and latitude < " + str(top) + \
             " and longitude > " + str(left) + \
