@@ -4,17 +4,6 @@ import numpy as np
 from sodapy import Socrata
 from gmplot import gmplot
 
-dataset_id = 'fdj4-gpfu'
-domain = 'data.austintexas.gov'
-client = Socrata(domain, None)
-
-results = client.get(dataset_id)
-df = pd.DataFrame.from_dict(results)
-
-# UT austin region: latitude and longitude
-top_left = (30.287402, -97.754840)
-bottom_right = (30.282200, -97.748456)
-UTregion = [top_left, bottom_right]
 
 class CrimeData():
   
@@ -52,5 +41,17 @@ class CrimeData():
     except:
       print('No dataset has been loaded into this instance')
     
+  def heatmap(self):
+    center_lat = bottom + (top - bottom) / 2
+    center_lng = right + (left - right) / 2
+    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, 17)
+    try:
+      lat_coordinates = df['latitude'].astype('float').tolist()
+      lng_coordinates = df['longitude'].astype('float').tolist()
+      gmap.heatmap(lat_coordinates, lng_coordinates, radius=30)
+      return gmap
+    except:
+      print('No dataset has been loaded into this instance')
   
-            
+  def close(self):
+    client.close()
