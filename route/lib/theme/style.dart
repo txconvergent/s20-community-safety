@@ -6,8 +6,8 @@ ThemeData appTheme() {
     accentColor: Colors.orange,
     hintColor: Colors.white,
     dividerColor: Colors.white,
-    buttonColor: Colors.white,
-    scaffoldBackgroundColor: Colors.black,
-    canvasColor: Colors.black,
+    buttonColor: Colors.blueGrey[300],
+    scaffoldBackgroundColor: Colors.grey[900],
+    canvasColor: Colors.grey,
   );
 }

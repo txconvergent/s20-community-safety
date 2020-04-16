@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:route/theme/style.dart';
 
 import 'components/email_sign_in_form.dart';
 
@@ -12,7 +13,7 @@ class EmailSignIn extends StatelessWidget {
                   child: EmailForm.create(context))
                 )
               ),
-            backgroundColor: Colors.grey[200],
+            backgroundColor: appTheme().backgroundColor,
     );
   }
 }
