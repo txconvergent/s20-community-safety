@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:route/theme/style.dart';
+import 'package:route/assets/style.dart';
 
 import 'components/email_sign_in_form.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:route/theme/style.dart';
+import 'package:route/assets/style.dart';
 import 'landing_page.dart';
 import 'services/auth.dart';
 
