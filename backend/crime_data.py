@@ -34,7 +34,7 @@ class CrimeData():
     except:
       print('No dataset has been loaded into this instance')
   
-  def markermap(self, zoom=14):
+  def markermap(self, zoom=15):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
     gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, self.api_key)
@@ -46,7 +46,7 @@ class CrimeData():
     except:
       print('No dataset has been loaded into this instance')
     
-  def heatmap(self, zoom=14):
+  def heatmap(self, zoom=15):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
     gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, self.api_key)
