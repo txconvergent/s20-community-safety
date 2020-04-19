@@ -7,13 +7,14 @@ from gmplot import gmplot
 
 class CrimeData():
   
-  def __init__(self, region):
+  def __init__(self, region, api_key):
     self.top = region[0][0]
     self.bottom = region[1][0]
     self.left = region[0][1]
     self.right = region[1][1]
     self.df = None
     self.client = None
+    self.api_key = api_key
     
   def load(self, dataset_id, domain, socrata_token, start_year, max_crimes):
     self.client = Socrata(domain, socrata_token)
@@ -36,7 +37,7 @@ class CrimeData():
   def markermap(self, zoom=14):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
-    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, 'AIzaSyDmKbjLrlWQowWVzzTy_AAWsFQO4Hdbeko')
+    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, self.api_key)
     try:
       lat_coordinates = self.df['latitude'].astype('float').tolist()
       lng_coordinates = self.df['longitude'].astype('float').tolist()
@@ -48,7 +49,7 @@ class CrimeData():
   def heatmap(self, zoom=14):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
-    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, 'AIzaSyDmKbjLrlWQowWVzzTy_AAWsFQO4Hdbeko')
+    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, self.api_key)
     try:
       lat_coordinates = self.df['latitude'].astype('float').tolist()
       lng_coordinates = self.df['longitude'].astype('float').tolist()
