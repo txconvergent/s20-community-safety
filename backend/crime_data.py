@@ -36,7 +36,7 @@ class CrimeData():
   def markermap(self, zoom=14):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
-    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom)
+    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, 'AIzaSyDmKbjLrlWQowWVzzTy_AAWsFQO4Hdbeko')
     try:
       lat_coordinates = self.df['latitude'].astype('float').tolist()
       lng_coordinates = self.df['longitude'].astype('float').tolist()
@@ -48,7 +48,7 @@ class CrimeData():
   def heatmap(self, zoom=14):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
-    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom)
+    gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, 'AIzaSyDmKbjLrlWQowWVzzTy_AAWsFQO4Hdbeko')
     try:
       lat_coordinates = self.df['latitude'].astype('float').tolist()
       lng_coordinates = self.df['longitude'].astype('float').tolist()
