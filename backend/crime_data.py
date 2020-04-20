@@ -16,11 +16,12 @@ class CrimeData():
     self.client = None
     self.api_key = api_key
     
-  def load(self, dataset_id, domain, socrata_token, start_year, max_crimes):
+  def load(self, dataset_id, domain, socrata_token, start_year, end_year, max_crimes):
     self.client = Socrata(domain, socrata_token)
-    incident_id = start_year * (10**7)
-    query = "incident_report_number > " + str(incident_id) + \
-            " and incident_report_number < 20210000000 " + \
+    incident_id_start = start_year * (10**7)
+    incident_id_end = end_year * (10**7)
+    query = "incident_report_number >= " + str(incident_id_start) + \
+            " and incident_report_number <= " + str(incident_id_end) + \
             " and latitude > " + str(self.bottom) + \
             " and latitude < " + str(self.top) + \
             " and longitude > " + str(self.left) + \
