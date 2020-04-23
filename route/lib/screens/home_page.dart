@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:route/assets/style.dart';
 import 'package:route/screens/floating_search_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:route/theme/style.dart';
 
 class HomePage extends StatefulWidget {
   @override
