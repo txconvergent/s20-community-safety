@@ -6,8 +6,11 @@ ThemeData appTheme() {
     accentColor: Colors.orange,
     hintColor: Colors.white,
     dividerColor: Colors.white,
+    backgroundColor: Colors.blueGrey,
     buttonColor: Colors.blueGrey[300],
     scaffoldBackgroundColor: Color(0xFF242f3e),
-    canvasColor: Colors.grey,
+    canvasColor: Colors.white,
+    fontFamily: 'Hind'
   );
+
 }

@@ -13,14 +13,14 @@ class LandingPage extends StatelessWidget {
       builder: (context, snapshot) {
         if(snapshot.connectionState == ConnectionState.active) {
           User user = snapshot.data;
-          if(user == null) {
+          // if(user == null) {
             return EmailSignIn();
-          } else {
-            return HomePage(); 
-          }
-        } else {
-          return Scaffold(body: Center(child: CircularProgressIndicator()));
+           //} else {
+             return HomePage(); 
+           //}
+         } else {
+           return Scaffold(body: Center(child: CircularProgressIndicator()));
         }
-      }); 
+        }); 
   }
 }
