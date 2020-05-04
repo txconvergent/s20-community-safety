@@ -56,6 +56,11 @@ def generate_subregions(initial_weight):
 
 
 def generate_subregion_weights(crime_data, crime_weights):
+    """
+    :param crime_data: Austin crime data - type: CrimeData object
+    :param crime_weights: weights for each crime classification - type: dictionary
+    :return:
+    """
     # initialize weights to zero
     subregion_weights = generate_subregions(0)
     num_of_crimes = crime_data.crime_count()

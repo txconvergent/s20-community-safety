@@ -4,6 +4,7 @@ from googlemaps import client
 from googlemaps import roads
 from googlemaps import convert
 
+
 def points(pointA, pointB, num):
     lat_distance = pointB[0] - pointA[0]
     lng_distance = pointB[1] - pointA[1]
@@ -21,7 +22,9 @@ def points(pointA, pointB, num):
     return interm_points, lats, lngs
 
 
-def waypoint_generator(pointA, pointB, client):
+def waypoint_generator(user_location, destination, client):
+    pointA = user_location
+    pointB = destination
     interm, _, _ = points(pointA, pointB, 3)
     slope = (pointA[0] - pointB[0]) / (pointA[1] - pointB[1])
     perp_slope = -slope ** (-1)
@@ -56,20 +59,24 @@ def waypoint_generator(pointA, pointB, client):
     return waypoints
 
 
-def route_generator():
+def route_generator(user_location, destination, client):
+    pointA = user_location
+    pointB = destination
+    cli = client
     wp = waypoint_generator(pointA, pointB, cli)
-    map_routes = []
+    gmap_routes = []
     route = directions.directions(cli, pointA, pointB, mode='walking', alternatives=True)
     print(len(route))
     for i in range(len(route)):
-        map_routes.append(route[i])
+        gmap_routes.append(route[i])
     for waypoint in wp:
         route = directions.directions(cli, pointA, pointB, mode='walking', waypoints=waypoint)
-        map_routes.append(route)
-    map_routes.append(directions.directions(cli, pointA, pointB, mode='walking', waypoints=[wp[0], wp[2]]))
-    map_routes.append(directions.directions(cli, pointA, pointB, mode='walking', waypoints=[wp[0], wp[3]]))
-    map_routes.append(directions.directions(cli, pointA, pointB, mode='walking', waypoints=[wp[1], wp[2]]))
-    map_routes.append(directions.directions(cli, pointA, pointB, mode='walking', waypoints=[wp[1], wp[3]]))
+        gmap_routes.append(route)
+    gmap_routes.append(directions.directions(cli, pointA, pointB, mode='walking', waypoints=[wp[0], wp[2]]))
+    gmap_routes.append(directions.directions(cli, pointA, pointB, mode='walking', waypoints=[wp[0], wp[3]]))
+    gmap_routes.append(directions.directions(cli, pointA, pointB, mode='walking', waypoints=[wp[1], wp[2]]))
+    gmap_routes.append(directions.directions(cli, pointA, pointB, mode='walking', waypoints=[wp[1], wp[3]]))
+    return gmap_routes
 
 
 def convert_to_point_routes(map_routes):
