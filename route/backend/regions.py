@@ -44,15 +44,29 @@ def subregion_lngs(decimal_places):
     return points
 
 
-def generate_subregion_weights():
+def generate_subregions(initial_weight):
     lats = subregion_lats(3)
     lngs = subregion_lngs(3)
-    subregion_weights = {}
-    count = 0
+    subregions = {}
     for i in range(len(lats)):
         for j in range(len(lngs)):
-            subregion_weights[(lats[i], lngs[j])] = count
-            count += 1
+            subregions[(lats[i], lngs[j])] = initial_weight
+
+    return subregions
+
+
+def generate_subregion_weights(crime_data, crime_weights):
+    # initialize weights to zero
+    subregion_weights = generate_subregions(0)
+    num_of_crimes = crime_data.crime_count()
+    dataset = crime_data.df
+    dataset['latitude'] = dataset['latitude'].astype('float')
+    dataset['longitude'] = dataset['longitude'].astype('float')
+    for i in range(num_of_crimes):
+        lat = round(dataset['latitude'][i], 3)
+        lng = round(dataset['longitude'][i], 3)
+        subregion = (lat, lng)
+        crime_type = dataset['crime_type'][i]
+        subregion_weights[subregion] += crime_weights[crime_type]
 
     return subregion_weights
-
