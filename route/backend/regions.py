@@ -3,7 +3,8 @@ Module for generating sub-regions within the University of Texas area and scorin
 each sub-region based on its criminal activity within a specified time frame.
 """
 
-def region_matrix_lat(decimal_places):
+
+def subregion_lats(decimal_places):
     """
     :param decimal_places:
     :return:
@@ -23,4 +24,35 @@ def region_matrix_lat(decimal_places):
       point = float(point)
       points.append(point)
     return points
+
+
+def subregion_lngs(decimal_places):
+    right = round(-97.728456, decimal_places)
+    left = round(-97.754840, decimal_places)
+    start = str(right)
+    start = start[4:]
+    start = int(start)
+    end = str(left)
+    end = end[4:]
+    end = int(end)
+    lngs = range(start, end+1)
+    points = []
+    for num in lngs:
+      point = '-97.' + str(num)
+      point = float(point)
+      points.append(point)
+    return points
+
+
+def generate_subregion_weights():
+    lats = subregion_lats(3)
+    lngs = subregion_lngs(3)
+    subregion_weights = {}
+    count = 0
+    for i in range(len(lats)):
+        for j in range(len(lngs)):
+            subregion_weights[(lats[i], lngs[j])] = count
+            count += 1
+
+    return subregion_weights
 
