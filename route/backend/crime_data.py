@@ -47,14 +47,14 @@ class CrimeData():
     except:
       print('No dataset has been loaded into this instance')
     
-  def heatmap(self, zoom=15):
+  def heatmap(self, zoom=15, radius=30):
     center_lat = self.bottom + (self.top - self.bottom) / 2
     center_lng = self.right + (self.left - self.right) / 2
     gmap = gmplot.GoogleMapPlotter(center_lat, center_lng, zoom, self.api_key)
     try:
       lat_coordinates = self.df['latitude'].astype('float').tolist()
       lng_coordinates = self.df['longitude'].astype('float').tolist()
-      gmap.heatmap(lat_coordinates, lng_coordinates, radius=30)
+      gmap.heatmap(lat_coordinates, lng_coordinates, radius=radius)
       return gmap
     except:
       print('No dataset has been loaded into this instance')
