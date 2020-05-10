@@ -1,6 +1,3 @@
-from crime_data import *
-
-
 def load_data():
     socrata_token = 'xty4xwyMTY7JsNGnat7Av9sQt'
 
